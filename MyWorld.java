@@ -15,7 +15,10 @@ public class MyWorld extends World {
      * Constructor for objects of class MyWorld.
      */
     public MyWorld() {
+        
+        // Create a new world with 600x400
         super(600, 400, 1, false);
+        
         //Creates elephant object
         Elephant elephant = new Elephant();
         addObject(elephant, 300, 300); 
