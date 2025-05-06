@@ -8,6 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Apple extends Actor
 {
+    public Apple()
+    {
+        //Sets image
+        setImage("apple1.png");
+    }
     public void act()
     {
         // Apple falls downwards.
