@@ -9,7 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Elephant extends Actor
 {
     GreenfootSound elephantSound = new GreenfootSound("elephantcub.mp3");
-    GreenfootImage[] idle = new GreenfootImage[8];
+    GreenfootImage[] idleRight = new GreenfootImage[8];
+    GreenfootImage[] idleLeft = new GreenfootImage[8];
+    
+    //Direction the elephant is facing
+    String facing = "right";
     
     
     /**
@@ -19,12 +23,19 @@ public class Elephant extends Actor
     {
         //Sets elephant image
         setImage("elephant.png");
-        for(int i = 0 ; i < idle.length; i++)
+        for(int i = 0 ; i < idleRight.length; i++)
         {
-            idle[i] = new GreenfootImage("images/elephant_idle/idle" + i +".png");    
-            idle[i].scale(100, 100);
+            idleRight[i] = new GreenfootImage("images/elephant_idle/idle" + i +".png");    
+            idleRight[i].scale(100, 100);
         }
-        setImage(idle[0]);    
+        
+        for(int i = 0 ; i < idleLeft.length; i++)
+        {
+            idleLeft[i] = new GreenfootImage("images/elephant_idle/idle" + i +".png");    
+            idleLeft[i].mirrorHorizontally();
+            idleLeft[i].scale(100, 100);
+        }
+        setImage(idleRight[0]);    
     }
     
     /**
@@ -33,8 +44,16 @@ public class Elephant extends Actor
     int imageIndex = 0;
     public void animateElephant()
     {
-        setImage(idle[imageIndex]);   
-        imageIndex = (imageIndex + 1) % idle.length;
+        if(facing.equals("right"))
+        {
+            setImage(idleRight[imageIndex]);   
+            imageIndex = (imageIndex + 1) % idleRight.length;
+        }   
+        else
+        {
+            setImage(idleLeft[imageIndex]);   
+            imageIndex = (imageIndex + 1) % idleLeft.length;   
+        }
     }
     
     
@@ -47,10 +66,12 @@ public class Elephant extends Actor
         if (Greenfoot.isKeyDown("left"))
         {
             move (-3);
+            facing = "left";
         }
         else if (Greenfoot.isKeyDown("right"))
         {
             move(3);
+            facing = "right";
         }
         
         //Remove apple if elephant eats it
