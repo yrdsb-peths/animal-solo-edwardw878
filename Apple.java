@@ -11,13 +11,15 @@ public class Apple extends Actor
     public Apple()
     {
         //Sets image
-        setImage("apple1.png");
+        GreenfootImage img = new GreenfootImage("apple.png");
+        img.scale(img.getWidth()/9, img.getHeight()/9);
+        setImage(img);
     }
     public void act()
     {
         // Apple falls downwards.
         int x = getX();
-        int y = getY()+2;
+        int y = getY()+3;
         setLocation(x,y);
         
         //Remove apple and draw game over when apple gets to bottom
