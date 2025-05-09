@@ -20,6 +20,9 @@ public class TitleScreen extends World
 
         addObject(titleLabel, 250, getHeight()/5);
         prepare();
+        
+        //Sets background
+        setBackground("images/hungryelephantbg.jpg");
     }
 
     /**
